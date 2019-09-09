@@ -77,9 +77,6 @@ forecast_set = clf.predict(X_lately)
 df['Forecast'] = np.nan
 
 last_date = df.iloc[-1].name
-#last_unix = last_date
-#next_unix = last_unix + timedelta(days=1)
-
 last_unix = last_date.timestamp()
 one_day = 86400
 next_unix = last_unix + one_day
@@ -87,10 +84,7 @@ next_unix = last_unix + one_day
 for i in forecast_set:
     next_date = datetime.datetime.fromtimestamp(next_unix)
     next_unix += 86400
-    #next_date = next_unix
-    #next_unix += timedelta(days=1)
     df.loc[next_date] = [np.nan for _ in range(len(df.columns)-1)]+[i]
-
 
 style.use('ggplot')
 df['Adj Close'].plot()
@@ -101,7 +95,6 @@ plt.legend(loc=4)
 plt.xlabel('Date')
 plt.ylabel('Price')
 plt.show()
-print(df.tail())
 
 #Show the Stock Price Prediction using Quadractic Regression
 forecast_quadractic = clfpoly2.predict(X_lately)
@@ -116,7 +109,6 @@ for i in forecast_quadractic:
     next_unix_1 += timedelta(days=1)
     df.loc[next_date_1] = [np.nan for _ in range(len(df.columns)-1)]+[i]
 
-
 style.use('ggplot')
 df['Adj Close'].plot()
 df['Forecast_Q'].plot()
@@ -125,7 +117,6 @@ plt.legend(loc=4)
 plt.xlabel('Date')
 plt.ylabel('Price')
 plt.show()
-print(df.tail())
 
 #Show the Stock Price Prediction using Lasso Regression
 forecast_lasso = reg.predict(X_lately)
@@ -140,7 +131,6 @@ for i in forecast_lasso:
     next_unix_2 += timedelta(days=1)
     df.loc[next_date_2] = [np.nan for _ in range(len(df.columns)-1)]+[i]
 
-
 style.use('ggplot')
 df['Adj Close'].plot()
 df['Forecast_lasso'].plot()
@@ -149,5 +139,3 @@ plt.legend(loc=4)
 plt.xlabel('Date')
 plt.ylabel('Price')
 plt.show()
-
-print(df.tail())
