@@ -1,5 +1,5 @@
 # Stock-Price-Prediction
-Stock Price Prediction using Scikit Learn Regression Method
+Stock Price Prediction using Scikit-Learn Regression Method
 
 Steps
 1) Download the Apple stock price data from Yahoo Finance using web.Data Reader
